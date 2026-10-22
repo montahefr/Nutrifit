@@ -1,0 +1,70 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f8f7f2">
+    <meta name="description" content="NutriFit helps you build healthier habits through mindful nutrition and personalized wellness.">
+    <title>{% block title %}NutriFit — Feel good, naturally{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/main.js' %}" defer></script>
+</head>
+<body>
+    <header class="site-header">
+        <nav class="navbar container" aria-label="Main navigation">
+            <a href="{% url 'home' %}" class="brand" aria-label="NutriFit home">
+                <span class="brand-mark">n</span>
+                nutri<span>fit</span><span class="brand-dot">.</span>
+            </a>
+
+            <button class="menu-toggle" type="button"
+                    aria-label="Toggle navigation" aria-expanded="false">
+                <span></span><span></span>
+            </button>
+
+            <div class="nav-links">
+                <a href="{% url 'home' %}#about">Our approach</a>
+                <a href="{% url 'home' %}#benefits">Benefits</a>
+                {% if user.is_authenticated %}
+                    <span class="nav-welcome">Hi, {{ user.first_name|default:user.username }}</span>
+                    <a href="{% url 'logout' %}" class="button button-small button-outline">Sign out</a>
+                {% else %}
+                    <a href="{% url 'login' %}" class="nav-login">Sign in</a>
+                    <a href="{% url 'register' %}" class="button button-small">Get started <span>↗</span></a>
+                {% endif %}
+            </div>
+        </nav>
+    </header>
+
+    {% if messages %}
+        <div class="messages container" aria-live="polite">
+            {% for message in messages %}
+                <div class="message message-{{ message.tags|default:'info' }}">
+                    <span>{{ message }}</span>
+                    <button type="button" class="message-close" aria-label="Dismiss message">×</button>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <a href="{% url 'home' %}" class="brand footer-brand">
+                <span class="brand-mark">n</span>
+                nutri<span>fit</span><span class="brand-dot">.</span>
+            </a>
+            <p>Small steps. Better habits. A healthier you.</p>
+            <span class="footer-copy">© 2026 NutriFit</span>
+        </div>
+    </footer>
+</body>
+</html>

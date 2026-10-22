@@ -1,0 +1,72 @@
+
+{% extends "base.html" %}
+
+{% block title %}Sign in — NutriFit{% endblock %}
+
+{% block content %}
+<section class="auth-section">
+    <div class="auth-shell">
+        <div class="auth-side auth-side-login">
+            <a href="{% url 'home' %}" class="auth-back">← Back to home</a>
+            <div class="auth-side-content">
+                <span class="auth-symbol">✳</span>
+                <div class="eyebrow eyebrow-light">YOUR JOURNEY CONTINUES</div>
+                <h1>Good to<br>see you <em>again.</em></h1>
+                <p>Your wellness journey is made of little moments. Let's make today one of them.</p>
+                <div class="auth-side-quote">“Take care of your body. It's the only place you have to live.”</div>
+            </div>
+            <span class="auth-side-bottom">NUTRITION · BALANCE · WELLNESS</span>
+        </div>
+
+        <div class="auth-form-side">
+            <div class="auth-form-wrap">
+                <div class="auth-mobile-brand">
+                    <a href="{% url 'home' %}" class="brand">
+                        <span class="brand-mark">n</span> nutri<span>fit</span><span class="brand-dot">.</span>
+                    </a>
+                </div>
+
+                <div class="form-heading">
+                    <span class="form-kicker">WELCOME BACK</span>
+                    <h2>Sign in<span class="brand-dot">.</span></h2>
+                    <p>Pick up where you left off.</p>
+                </div>
+
+                <form method="post" action="{% url 'login' %}" class="auth-form">
+                    {% csrf_token %}
+
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input id="email" type="email" name="email"
+                               placeholder="you@example.com"
+                               value="{{ request.POST.email|default:'' }}"
+                               autocomplete="email" required autofocus>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="label-row">
+                            <label for="password">Password</label>
+                        </div>
+                        <div class="password-field">
+                            <input id="password" type="password" name="password"
+                                   placeholder="Enter your password"
+                                   autocomplete="current-password" required>
+                            <button class="password-toggle" type="button"
+                                    data-toggle-password="password"
+                                    aria-label="Show password">Show</button>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="button auth-submit">
+                        Sign in to NutriFit <span>↗</span>
+                    </button>
+                </form>
+
+                <div class="auth-divider"><span>NEW TO NUTRIFIT?</span></div>
+                <p class="auth-switch">Let's change that. <a href="{% url 'register' %}">Create an account →</a></p>
+                <p class="auth-legal">By signing in, you're taking another little step toward yourself.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

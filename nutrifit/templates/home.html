@@ -1,0 +1,118 @@
+
+{% extends "base.html" %}
+
+{% block title %}NutriFit — Feel good, naturally{% endblock %}
+
+{% block content %}
+<section class="hero container">
+    <div class="hero-copy">
+        <div class="eyebrow"><span class="eyebrow-dot"></span> YOUR WELLNESS, YOUR WAY</div>
+
+        <h1>A healthier you<br>starts with <span>little things.</span></h1>
+
+        <p class="hero-description">
+            Feel better in your body, find your balance, and build
+            healthy habits that actually fit your life. One small step at a time.
+        </p>
+
+        <div class="hero-actions">
+            {% if user.is_authenticated %}
+                <a href="#benefits" class="button">Explore your wellness <span>↗</span></a>
+            {% else %}
+                <a href="{% url 'register' %}" class="button">Start your journey <span>↗</span></a>
+                <a href="{% url 'login' %}" class="text-link">I already have an account <span>→</span></a>
+            {% endif %}
+        </div>
+
+        <div class="hero-note">
+            <div class="avatar-stack" aria-hidden="true">
+                <span>A</span><span>M</span><span>S</span>
+            </div>
+            <div>
+                <strong>A little better, every day.</strong>
+                <p>Wellness that feels like you.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="hero-visual">
+        <div class="hero-image"></div>
+        <div class="image-label">
+            <span class="label-icon">✳</span>
+            <div>
+                <strong>Find your balance</strong>
+                <span>Mindful eating · Better living</span>
+            </div>
+        </div>
+        <div class="floating-note">
+            <span class="floating-icon">♡</span>
+            <div><strong>Progress, not perfection.</strong><span>That’s the NutriFit way.</span></div>
+        </div>
+        <span class="decorative-star star-one">✳</span>
+        <span class="decorative-star star-two">✳</span>
+    </div>
+</section>
+
+<section class="ticker" aria-label="NutriFit values">
+    <div class="ticker-inner">
+        <span>Eat mindfully</span><i>✳</i>
+        <span>Move gently</span><i>✳</i>
+        <span>Feel your best</span><i>✳</i>
+        <span>Grow every day</span><i>✳</i>
+        <span>Eat mindfully</span><i>✳</i>
+    </div>
+</section>
+
+<section class="section container" id="about">
+    <div class="section-heading">
+        <div>
+            <div class="eyebrow"><span class="eyebrow-dot"></span> A FRESH APPROACH</div>
+            <h2>Wellness should feel<br><span>good, not complicated.</span></h2>
+        </div>
+        <p>
+            No strict rules. No all-or-nothing thinking.
+            Just a more thoughtful way to care for yourself.
+        </p>
+    </div>
+
+    <div class="approach-grid" id="benefits">
+        <article class="approach-card card-sage">
+            <span class="card-number">01 / NOURISH</span>
+            <div class="card-symbol">✳</div>
+            <h3>Food that loves you back.</h3>
+            <p>Build a better relationship with food through simple, balanced choices.</p>
+            <span class="card-decoration">✳</span>
+        </article>
+
+        <article class="approach-card card-peach">
+            <span class="card-number">02 / CONNECT</span>
+            <div class="card-symbol">♡</div>
+            <h3>Guidance that gets you.</h3>
+            <p>Find support from a nutrition professional who understands your goals.</p>
+            <span class="card-decoration">♡</span>
+        </article>
+
+        <article class="approach-card card-lilac">
+            <span class="card-number">03 / GROW</span>
+            <div class="card-symbol">↗</div>
+            <h3>Your progress, your pace.</h3>
+            <p>Celebrate small wins and focus on habits that last beyond tomorrow.</p>
+            <span class="card-decoration">✳</span>
+        </article>
+    </div>
+</section>
+
+<section class="closing-section">
+    <div class="closing-content container">
+        <div class="eyebrow eyebrow-light"><span class="eyebrow-dot"></span> YOUR NEXT CHAPTER</div>
+        <h2>Make room for<br>a <em>healthier</em> you.</h2>
+        <p>Your wellness journey doesn't need to be perfect. It just needs a beginning.</p>
+        {% if user.is_authenticated %}
+            <a href="#about" class="button button-light">Keep exploring <span>↗</span></a>
+        {% else %}
+            <a href="{% url 'register' %}" class="button button-light">Let's get started <span>↗</span></a>
+        {% endif %}
+        <span class="closing-flower">✳</span>
+    </div>
+</section>
+{% endblock %}
